@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+    backend:
+        build:
+            context: ./backend
+            dockerfile: Dockerfile
+        ports:
+            - "3000:3000"
+        environment:
+            - RAILS_ENV=development
+            - DATABASE_URL=postgres://dinh:dinh@db:5432/g_scores_database
+        depends_on:
+            - db
+        volumes:
+            - ./backend:/rails
+        command: ./bin/docker-entrypoint
+
+    db:
+        image: postgres:15
+        environment:
+            - POSTGRES_USER=dinh
+            - POSTGRES_PASSWORD=dinh
+            - POSTGRES_DB=g_scores_database
+        ports:
+            - "5432:5432"
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+
+volumes:
+    postgres_data:

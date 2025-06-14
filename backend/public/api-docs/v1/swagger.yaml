@@ -1,0 +1,57 @@
+openapi: 3.0.1
+info:
+    title: G-Scores API
+    version: "v1"
+paths:
+    /students/search/{registration_number}:
+        get:
+            summary: Search scores by registration number
+            parameters:
+                - name: registration_number
+                  in: path
+                  required: true
+                  schema:
+                      type: string
+            responses:
+                "200":
+                    description: Candidate's score information
+                "404":
+                    description: Candidate not found
+
+    /students/statistics:
+        get:
+            summary: Statistics of student count by 4 score levels for each subject
+            description: |
+                Statistics of student count by levels:
+                - Excellent: >= 8 points
+                - Good: >= 6 and < 8 points
+                - Average: >= 4 and < 6 points
+                - Poor: < 4 points
+            responses:
+                "200":
+                    description: Statistics successful
+
+    /students/top_group_a:
+        get:
+            summary: Top 10 students in Group A (Math, Physics, Chemistry)
+            description: Retrieve the list of 10 students with the highest total scores in Math, Physics, and Chemistry
+            responses:
+                "200":
+                    description: Successfully retrieved the list
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        registration_number:
+                                            type: string
+                                        math:
+                                            type: number
+                                        physics:
+                                            type: number
+                                        chemistry:
+                                            type: number
+                                        total_score:
+                                            type: number
