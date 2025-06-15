@@ -14,7 +14,7 @@ services:
             - db
         volumes:
             - ./backend:/rails
-        command: ./bin/docker-entrypoint
+              #command: ./bin/docker-entrypoint
 
     db:
         image: postgres:15
