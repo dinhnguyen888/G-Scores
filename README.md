@@ -31,7 +31,8 @@ Please wait 20-25 minutes for the CSV data import to complete.
 Monitor progress with:
 
 ```bash
-docker-compose logs -f
+docker-compose logs -f <service_name>
+
 ```
 
 ## Features
