@@ -1,27 +1,43 @@
-G-Scores
+# G-Scores - College Entrance Exam Score Lookup System
 
-link backend: https://gscores.ddns.net/
-link frontend: https://g-scores-gamma.vercel.app/
+## Live Demo
 
-Công nghệ sử dụng:
-Backend: Ruby On Rails
-Frontend: ReactJS
-Giao thức: Rest API
+-   Backend: [https://gscores.ddns.net/](https://gscores.ddns.net/)
+-   Api Docs: Backend: [https://gscores.ddns.net/api-docs](https://gscores.ddns.net/api-docs)
+-   Frontend: [https://g-scores-gamma.vercel.app/](https://g-scores-gamma.vercel.app/)
 
-Deployment:
-Backend: Digital Ocean + NoIP cho tên miền https
-Frontend: Vercel
+## Technologies Used
 
-Hướng dẫn cài đặt:
-Anh/Chị chạy các câu lệnh sau khi đã clone projects:
+-   Backend: Ruby On Rails
+-   Frontend: ReactJS
+-   Testing && API Document: Swagger
+-   Protocol: REST API
+
+## Deployment
+
+-   Backend: Digital Ocean with NoIP for HTTPS domain
+-   Frontend: Vercel
+
+## Installation Guide
+
+After cloning the project, run:
+
+```bash
 cd G-Scores
 docker-compose up -d
-sau khi anh/chị chạy xong vui lòng đợi thêm khoảng 20/25 phút đặng project nạp dữ liệu từ file csv ạ!!
-anh/chị có thể gõ câu lệnh sau để theo dõi tiếng trình ạ:
-docker-compose logs -f
+```
 
-Project này có gì?
-tra cứu điểm thí sinh qua số báo danh
-xem thống kê với biểu đồ cột chồng
-xem top 10 thí sinh khối A đạt điểm cao nhất
-Responsive design, Deployment on Linux
+Please wait 20-25 minutes for the CSV data import to complete.
+Monitor progress with:
+
+```bash
+docker-compose logs -f
+```
+
+## Features
+
+-   Candidate score lookup by registration number
+-   Statistical analysis with stacked bar charts
+-   Top 10 highest-scoring candidates in Group A
+-   Responsive design
+-   Linux deployment
