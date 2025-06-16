@@ -11,7 +11,7 @@
 -   Backend: Ruby On Rails
 -   Frontend: ReactJS
 -   Testing && API Document: Swagger
--   Protocol: REST API
+-   Architecture: REST API
 
 ## Deployment
 
