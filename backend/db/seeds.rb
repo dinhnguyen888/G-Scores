@@ -1,7 +1,7 @@
 require 'csv'
 
 students = []
-batch_size = 5000
+batch_size = 50000
 
 CSV.foreach(Rails.root.join('diem_thi_thpt_2024.csv'), headers: true).with_index do |row, idx|
   students << Student.new(
@@ -26,4 +26,32 @@ CSV.foreach(Rails.root.join('diem_thi_thpt_2024.csv'), headers: true).with_index
 end
 
 Student.import students if students.any?
+puts "Done importing students!"
+
+# Save top 10 group A students using scope
+puts "Calculating top 10 group A students..."
+GroupATop10.delete_all
+Student.group_a_top_10.each do |student|
+  GroupATop10.create!(
+    student: student,
+    total_score: student.total_score
+  )
+end
+puts "Saved top 10 group A students!"
+
+# Save statistics using defined constants
+puts "Calculating statistics..."
+Statistic.delete_all
+
+Student::SUBJECTS.each do |subject|
+  Student::SCORE_LEVELS.each do |level, range|
+    count = Student.where("#{subject} >= ? AND #{subject} < ?", range[:min], range[:max]).count
+    Statistic.create!(
+      subject: subject,
+      level: level.to_s,
+      count: count
+    )
+  end
+end
+
 puts "Done!"
