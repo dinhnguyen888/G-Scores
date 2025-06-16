@@ -11,7 +11,8 @@ fi
 #   ./bin/rails db:prepare
 # fi
 if [[ "$*" == *"rails server"* ]]; then
-  ./bin/rails db:prepare
+  # ./bin/rails db:prepare
+  ./bin/rails db:setup
 fi
 
 exec "${@}"
