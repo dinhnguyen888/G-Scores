@@ -1,6 +1,20 @@
 version: "3.8"
 
 services:
+    frontend:
+        build:
+            context: ./frontend
+            dockerfile: Dockerfile
+        ports:
+            - "4173:4173"
+        volumes:
+            - ./frontend:/app
+            - /app/node_modules
+        depends_on:
+            - backend
+        environment:
+            - VITE_API_URL=http://localhost:3000
+
     backend:
         build:
             context: ./backend
@@ -9,6 +23,7 @@ services:
             - "3000:3000"
         environment:
             - RAILS_ENV=development
+            - RAILS_MASTER_KEY=204cebfcc073f36a300ce91ecd5c57ed
             - DATABASE_URL=postgres://dinh:dinh@db:5432/g_scores_database
         depends_on:
             - db
